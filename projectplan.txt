@@ -1,0 +1,56 @@
+yolo-helmet-detection/
+│── data/
+│   ├── images/               # train/val/test images
+│   ├── labels/               # YOLO txt labels (same structure as images)
+│   └── dataset.yaml          # dataset config (paths, classes)
+│
+│── notebooks/
+│   ├── 01_explore_data.ipynb         # EDA + visualization
+│   ├── 02_eval_error_analysis.ipynb  # Error analysis on model predictions
+│   └── 03_experiments.ipynb          # Hyperparameter/augmentation tests
+│
+│── src/
+│   ├── train.py              # Training helper (Ultralytics API)
+│   ├── detect.py             # Batch/stream detection
+│   ├── utils.py              # Common helpers (drawing, IO, timing, metrics)
+│   ├── evaluate.py           # Precision, recall, mAP, confusion matrix
+│   ├── app_streamlit.py      # Streamlit UI
+│   └── app_fastapi.py        # FastAPI inference server
+│
+│── infra/
+│   ├── Dockerfile.render     # Render deployment (Uvicorn FastAPI)
+│   ├── render.yaml           # Render service definition
+│   ├── Dockerfile.lambda     # AWS Lambda deployment (ONNXRuntime)
+│   ├── lambda_handler.py     # AWS Lambda entrypoint
+│   ├── terraform/            # Terraform IaC for AWS infra
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── serverless-notes.md   # Tips (cold start, mem, timeouts)
+│
+│── models/                   # exported models (.pt, .onnx, .engine)
+│── runs/                     # YOLO training outputs (auto-generated)
+│── tests/                    # Unit & integration tests
+│   ├── test_utils.py
+│   ├── test_inference.py
+│   └── test_api.py
+│
+│── monitoring/
+│   ├── prometheus_metrics.py # Export inference metrics
+│   ├── grafana_dashboard.json# Grafana dashboard config
+│   └── logger.py             # Centralized logging
+│
+│── .github/workflows/
+│   ├── ci.yml                # Linting + unit tests on push/PR
+│   ├── cd-render.yml         # Deploy to Render
+│   └── cd-aws.yml            # Deploy to AWS Lambda
+│
+│── docs/
+│   ├── project_overview.md   # Problem, dataset, pipeline
+│   ├── training_logs.md      # Key training runs, hyperparams
+│   ├── deployment_guide.md   # Render + AWS setup
+│   └── api_docs.md           # FastAPI endpoints, usage
+│
+│── requirements.txt          # Dependencies
+│── README.md                 # Project overview
+│── .gitignore
